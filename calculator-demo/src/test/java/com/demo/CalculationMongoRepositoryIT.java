@@ -11,6 +11,7 @@ import org.testcontainers.utility.DockerImageName;
 
 import static org.junit.Assert.*;
 
+
 public class CalculationMongoRepositoryIT {
 
     @Test
