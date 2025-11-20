@@ -32,11 +32,13 @@ public class CalculatorTest {
 		double result = calc.divide(10, 2);
 		assertEquals(5.0, result, 0.001);
 	}
+	
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testDivideByZero() {
 		Calculator calc = new Calculator();
 		calc.divide(10, 0);
 	}
+	
 
 }

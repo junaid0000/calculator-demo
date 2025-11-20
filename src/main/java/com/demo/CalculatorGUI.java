@@ -4,12 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CalculatorGUI extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private Calculator calculator;
 	private CalculationHistory history;
 	private JTextField display;
 	private JTextArea historyArea;
+	private Map<String, JButton> buttonMap;
 
 	public CalculatorGUI() {
 		calculator = new Calculator();
@@ -31,13 +35,16 @@ public class CalculatorGUI extends JFrame {
 
 		// Number buttons
 		JPanel buttonPanel = new JPanel(new GridLayout(4, 4, 5, 5));
-
 		String[] buttons = { "7", "8", "9", "+", "4", "5", "6", "-", "1", "2", "3", "*", "C", "0", "=", "/" };
+
+		// Create buttons array for testing
+		buttonMap = new HashMap<>();
 
 		for (String text : buttons) {
 			JButton button = new JButton(text);
 			button.addActionListener(new ButtonClickListener());
 			buttonPanel.add(button);
+			buttonMap.put(text, button); // Store for testing
 		}
 
 		add(buttonPanel, BorderLayout.CENTER);
@@ -78,6 +85,21 @@ public class CalculatorGUI extends JFrame {
 			historyText.append(record.toString()).append("\n");
 		}
 		historyArea.setText(historyText.toString());
+	}
+
+	// Add getters for testing
+	public JTextField getDisplay() { return display; }
+	public JTextArea getHistoryArea() { return historyArea; }
+	public JButton getButton(String text) { return buttonMap.get(text); }
+
+	// Add this method to test ButtonClickListener directly
+	public void testButtonClick(String buttonText) {
+		if (buttonMap != null) {
+			JButton button = buttonMap.get(buttonText);
+			if (button != null) {
+				button.doClick();
+			}
+		}
 	}
 
 	public static void main(String[] args) {

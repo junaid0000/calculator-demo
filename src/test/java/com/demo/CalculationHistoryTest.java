@@ -24,6 +24,7 @@ public class CalculationHistoryTest {
 		assertEquals(2, records.size());
 		assertEquals("2 + 3 = 5", records.get(0).toString());
 	}
+	
 
 	@Test
 	public void testClearHistory() {
@@ -33,4 +34,16 @@ public class CalculationHistoryTest {
 
 		assertEquals(0, history.getHistorySize());
 	}
+	@Test
+	public void testCalculationRecordToString() {
+	    CalculationRecord record = new CalculationRecord("2 + 3", "5");
+	    assertEquals("2 + 3 = 5", record.toString());
+	}
+	@Test
+	public void testCalculationRecordGetters() {
+	    CalculationRecord record = new CalculationRecord("2 + 2", "4");
+	    assertEquals("2 + 2", record.getExpression());
+	    assertEquals("4", record.getResult());
+	}
+	
 }
