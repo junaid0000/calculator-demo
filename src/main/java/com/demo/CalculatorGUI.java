@@ -16,6 +16,9 @@ public class CalculatorGUI extends JFrame {
 	private Map<String, JButton> buttonMap;
 
 	public CalculatorGUI() {
+		// Enable headless mode for CI
+		System.setProperty("java.awt.headless", "false");
+		
 		calculator = new Calculator();
 		history = new CalculationHistory();
 		setupGUI();
